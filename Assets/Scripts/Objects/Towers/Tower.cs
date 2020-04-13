@@ -13,7 +13,8 @@ public abstract class Tower : MonoBehaviour
     protected int _damage;
     [SerializeField]
     protected BulletBehavoiur _bullet;
-    public abstract void Shoot(Monster monster);
-  
+    protected List<Monster> _monsterInRange= new List<Monster>();
+   
+
 
 }

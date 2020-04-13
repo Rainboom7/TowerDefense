@@ -4,24 +4,19 @@ using UnityEngine;
 
 public class ArcherTower : Tower
 {
-    private Monster _monsterInRange;
-    private bool _monsterLeft=false;
+    protected bool _monsterLeft = false;
+    private  Monster _monsterInRange ;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _monsterLeft = false;
-        if (collision.gameObject.tag.Equals("Enemy")&&_monsterInRange==null)
+        if (collision.gameObject.tag.Equals("Enemy") && _monsterInRange==null )
         {
             _monsterInRange = collision.gameObject.GetComponent<Monster>();
             StartCoroutine(ShootRoutine);
 
         }
     }
-    
-    public override void Shoot(Monster monster)
-    {
-        _monsterInRange = monster;
-        
-    }
+
     public IEnumerator ShootRoutine
     {
         get
@@ -40,6 +35,6 @@ public class ArcherTower : Tower
     private void OnTriggerExit2D(Collider2D collision)
     {
         _monsterLeft = true;
-        _monsterInRange = null;
+        _monsterInRange=null;
     }
 }

@@ -11,19 +11,25 @@ public abstract class Monster : MonoBehaviour
     protected float _speed;
     [SerializeField]
     protected int _damage;
-
-
-    public abstract void ChangeHealth(int damage);
-
+    public  event Action<int> HealthChangeEvent;
 
     private static Waypoint[] Waypoints;
     private int currentWaypoint = 0;
 
+    public void ChangeHealth(int damage)
+    {
+        _health -= damage;
+        if (_health <= 0)
+            Destroy(gameObject);
+    }
 
     public void SetWayPoints(WayPointsHolder wayPointsHolder)
     {
         Waypoints = wayPointsHolder.GetWaypoints();
         Debug.Log(Waypoints.Length);
+    }
+    public void DoDamage() {
+        HealthChangeEvent?.Invoke(_damage);
     }
   
     private void Update()
@@ -38,12 +44,13 @@ public abstract class Monster : MonoBehaviour
         }
         else
         {
-            if (currentWaypoint < Waypoints.Length - 2)
+            if (currentWaypoint < Waypoints.Length - 1)
             {
                 currentWaypoint++;
             }
             else
             {
+                DoDamage();
                 Destroy(gameObject);
             }
         }

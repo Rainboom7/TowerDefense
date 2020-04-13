@@ -8,10 +8,5 @@ public class DefaultMonster : Monster
     {
         Debug.Log(_health);
     }
-    public override void ChangeHealth(int damage)
-    {
-        _health -=damage;
-        if (_health <= 0)
-            Destroy(gameObject);
-    }
+  
 }

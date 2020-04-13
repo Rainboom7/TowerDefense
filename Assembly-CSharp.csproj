@@ -70,11 +70,14 @@
     <Compile Include="Assets\Scripts\Objects\DefaultMonster.cs" />
     <Compile Include="Assets\Scripts\Objects\Monster.cs" />
     <Compile Include="Assets\Scripts\Objects\Towers\ArcherTower.cs" />
+    <Compile Include="Assets\Scripts\Objects\Towers\PoisonTower.cs" />
     <Compile Include="Assets\Scripts\Objects\Towers\Tower.cs" />
     <Compile Include="Assets\Scripts\Objects\WayPointsHolder.cs" />
     <Compile Include="Assets\Scripts\Objects\Waypoint.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\TowerSite.cs" />
+    <Compile Include="Assets\Scripts\View\GameView.cs" />
+    <Compile Include="Assets\Scripts\View\HudView.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/palag/TowerDefense/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

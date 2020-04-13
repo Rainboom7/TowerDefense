@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,15 +10,19 @@ public class SpawnController : MonoBehaviour
     private Spawner _spawnpoint;
     private Coroutine _spawnRoutine;
     public WayPointsHolder WayPoints;
+    public GameController Controller;
     public Monster[] Monsters;
-    private void OnEnable()
+    public void Begin()
     {
-        _spawnpoint.SetMonstersAndWaypoints(WayPoints,Monsters);
+        _spawnpoint.HealthChangeEvent += Controller.OnHealthChangeEvent;
+        _spawnpoint.SetMonstersAndWaypoints(WayPoints,ref Monsters);
         _spawnRoutine = StartCoroutine(_spawnpoint.SpawnRoutine);
     }
 
-    private void OnDisable()
+    public void Stop()
     {
+        _spawnpoint.HealthChangeEvent -= Controller.OnHealthChangeEvent;
+
         if (_spawnRoutine != null)
             StopCoroutine(_spawnRoutine);
         _spawnRoutine = null;
