@@ -34,7 +34,15 @@ public class ArcherTower : Tower
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _monsterLeft = true;
-        _monsterInRange=null;
+        if (collision.gameObject.tag.Equals("Enemy"))
+        {
+            _monsterLeft = true;
+            _monsterInRange = null;
+        }
+    }
+
+    public override string GetName()
+    {
+        return "Archer tower";
     }
 }

@@ -4,33 +4,49 @@ using UnityEngine;
 
 public class GameView : MonoBehaviour
 {
-    
+    public Tower[] Towers;
+    [SerializeField]
+    private TowerSelectView _towerSelectView;
     public GameController Controller;
+    public TowerController TowerController;
+    public BeginGamePanelView BeginGamePanelView;
+    public GameOverPanelView GameOverPanelView;
     public int moneyPerSecond;
     public SpawnController spawnController;
-    [SerializeField]
-    private HudView _hudView;
+    public HudView HudView;
     private const int SECOND = 1;
     private void OnEnable()
     {
         StartGame();
     }
-    private void OnDisable()
-    {
-        StopGame();
-    }
+   
     private void StartGame()
     {
-        Controller.HealthChangeEvent += _hudView.SetHealth;
-        Controller.AddMoneyEvent += _hudView.SetMoney;
+        _towerSelectView.Towers = Towers;
+        _towerSelectView.SelectTowerAction += TowerController.SelectTower;
+        _towerSelectView.ShowButtons();
+        BeginGamePanelView.ShowHudEvent += HudView.ShowHud;
+        Controller.HealthChangeEvent += HudView.SetHealth;
+        Controller.AddMoneyEvent += HudView.SetMoney;
+        Controller.TowersToBuyRecalculateEvent += _towerSelectView.Recalculate;
+        Controller.EndGameEvent += StopGame;
         Controller.NewGame();
         spawnController.Begin();
         StartCoroutine(AddMoneyRoutine);
     }
     private void StopGame() {
+        GameOverPanelView.GameOver();
+        HudView.HideHud();
         StopCoroutine(AddMoneyRoutine);
-        Controller.HealthChangeEvent -= _hudView.SetHealth;
-        Controller.AddMoneyEvent -= _hudView.SetMoney;
+        _towerSelectView.SelectTowerAction -= TowerController.SelectTower;
+        Controller.HealthChangeEvent -= HudView.SetHealth;
+        Controller.AddMoneyEvent -= HudView.SetMoney;
+        Controller.EndGameEvent -= StopGame;
+        BeginGamePanelView.ShowHudEvent -= HudView.ShowHud;
+        Controller.EndGameEvent -= StopGame;
+        Controller.TowersToBuyRecalculateEvent -= _towerSelectView.Recalculate;
+        spawnController.Stop();
+
     }
     
     public IEnumerator AddMoneyRoutine

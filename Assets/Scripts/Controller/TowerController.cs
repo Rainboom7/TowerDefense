@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,16 +7,33 @@ public class TowerController : MonoBehaviour
 {
     [SerializeField]
     private List<TowerSite> _towerSites;
-    public Tower tower;
+    [SerializeField]
+    private GameController _gameController;
     private void OnEnable()
     {
-        SelectTower(tower);
+        foreach (TowerSite towerSite in _towerSites)
+        {
+            towerSite.ChangeMoneyAction += _gameController.OnMoneyChangeEvent;
+            towerSite.DeselectTowerAction += deselectTower;
+        }
     }
-    private void SelectTower(Tower tower)
+    public void SelectTower(Tower tower)
     {
         foreach (TowerSite towerSite in _towerSites)
         {
             towerSite.SelectTower(tower);
+        }     
+    }
+    private void deselectTower()
+    {
+        SelectTower(null);
+    }
+    private void OnDisable()
+    {
+        foreach (TowerSite towerSite in _towerSites)
+        {
+            towerSite.ChangeMoneyAction -= _gameController.OnMoneyChangeEvent;
+            towerSite.DeselectTowerAction -= deselectTower;
         }
     }
 }

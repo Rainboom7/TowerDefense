@@ -8,28 +8,30 @@ public class GameController : ScriptableObject
     public event Action EndGameEvent;
     public event Action<int> AddMoneyEvent;
     public event Action<int> HealthChangeEvent;
+    public event Action<int> TowersToBuyRecalculateEvent;
     public int BaseHealth { get; private set; }
     public int Money { get; private set; }
-    public int moneyPerSecond;
     public void OnMoneyChangeEvent(int value)
     {
         Money += value;
         Debug.Log(Money);
         AddMoneyEvent?.Invoke(Money);
+        TowersToBuyRecalculateEvent?.Invoke(Money);
     }
     public void NewGame()
     {
-        Money = 200;
+        Money = 100;
         BaseHealth = 100;
-        AddMoneyEvent?.Invoke(Money);
-        HealthChangeEvent?.Invoke(BaseHealth);
-
+        OnMoneyChangeEvent(0);
+        OnHealthChangeEvent(0);
     }
     public void OnHealthChangeEvent(int damage)
     {
         BaseHealth -= damage;
-        Debug.Log("healyth changed");
-        Debug.Log(BaseHealth);
+        if (BaseHealth <= 0)
+        {
+            EndGameEvent?.Invoke();
+        }
         HealthChangeEvent?.Invoke(BaseHealth);
     }
     

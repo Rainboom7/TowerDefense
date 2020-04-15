@@ -12,7 +12,16 @@ public class HudView : MonoBehaviour
         MoneyText.text = value.ToString();
 
     }
-    public void SetHealth(int value) {
+    public void SetHealth(int value)
+    {
         BasehealthText.text = value.ToString();
+    }
+    public void ShowHud()
+    {
+        Debug.Log("hud");
+        gameObject.SetActive(true);
+    }
+    public void HideHud() {
+        gameObject.SetActive(false);
     }
 }

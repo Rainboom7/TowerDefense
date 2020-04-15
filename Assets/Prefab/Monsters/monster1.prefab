@@ -117,9 +117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ac28f21f678ab4c90fd7f033ad8271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameController: {fileID: 11400000, guid: ceedf1440843c7243baa7ab2841b622f, type: 2}
   _health: 5
+  _cost: 10
   _speed: 5
-  _damage: 3
+  _damage: 10
 --- !u!61 &-8652588415162878003
 BoxCollider2D:
   m_ObjectHideFlags: 0

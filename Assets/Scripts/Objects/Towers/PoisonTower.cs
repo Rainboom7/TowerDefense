@@ -39,5 +39,9 @@ public class PoisonTower : Tower
             monster.ChangeHealth(_damage);
         }
     }
-  
+
+    public override string GetName()
+    {
+        return "Poison tower";
+    }
 }

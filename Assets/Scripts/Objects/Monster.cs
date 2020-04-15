@@ -6,7 +6,11 @@ using UnityEngine;
 public abstract class Monster : MonoBehaviour
 {
     [SerializeField]
+    private GameController _gameController;
+    [SerializeField]
     protected int _health;
+    [SerializeField]
+    protected int _cost;
     [SerializeField]
     protected float _speed;
     [SerializeField]
@@ -20,7 +24,10 @@ public abstract class Monster : MonoBehaviour
     {
         _health -= damage;
         if (_health <= 0)
+        {
             Destroy(gameObject);
+            _gameController.OnMoneyChangeEvent(_cost);
+        }
     }
 
     public void SetWayPoints(WayPointsHolder wayPointsHolder)

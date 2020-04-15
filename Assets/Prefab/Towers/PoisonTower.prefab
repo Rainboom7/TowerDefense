@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be72f6340af80e94a8b906739d08535c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 1
+  _cost: 150
   _shotDelay: 0.4
   _damage: 1
   _bullet: {fileID: 0}
@@ -185,7 +185,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 200
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 54038f42f31e74b4a9ae2997eff34269, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
