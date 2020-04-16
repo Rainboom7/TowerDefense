@@ -9,8 +9,12 @@ public class GameController : ScriptableObject
     public event Action<int> AddMoneyEvent;
     public event Action<int> HealthChangeEvent;
     public event Action<int> TowersToBuyRecalculateEvent;
-    public int BaseHealth { get; private set; }
-    public int Money { get; private set; }
+    [Range(0, 1000)]
+    public int BeginHealth;
+    [Range(0, 1000)]
+    public int BeginMoney;
+    private int BaseHealth;
+    private int Money;
     public void OnMoneyChangeEvent(int value)
     {
         Money += value;
@@ -20,8 +24,8 @@ public class GameController : ScriptableObject
     }
     public void NewGame()
     {
-        Money = 100;
-        BaseHealth = 100;
+        BaseHealth = BeginHealth;
+        Money = BeginMoney;
         OnMoneyChangeEvent(0);
         OnHealthChangeEvent(0);
     }

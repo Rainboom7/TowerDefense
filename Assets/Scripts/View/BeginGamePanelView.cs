@@ -8,6 +8,8 @@ public class BeginGamePanelView : MonoBehaviour
 {
     [HideInInspector]
     public event Action ShowHudEvent;
+    [HideInInspector]
+    public event Action StartGameEvent;
 
     private void OnEnable()
     {
@@ -16,6 +18,7 @@ public class BeginGamePanelView : MonoBehaviour
 
     public void BeginGame() {
         ShowHudEvent?.Invoke();
+        StartGameEvent?.Invoke();
         gameObject.SetActive(false);
       
     }

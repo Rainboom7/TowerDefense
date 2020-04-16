@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6abfa1d561ac64abc9792d086bfd5e, type: 3}
   m_Name: New Game Controller
   m_EditorClassIdentifier: 
+  BeginHealth: 358
+  BeginMoney: 105

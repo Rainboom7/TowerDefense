@@ -17,19 +17,19 @@ public class GameView : MonoBehaviour
     private const int SECOND = 1;
     private void OnEnable()
     {
-        StartGame();
-    }
-   
-    private void StartGame()
-    {
         _towerSelectView.Towers = Towers;
         _towerSelectView.SelectTowerAction += TowerController.SelectTower;
         _towerSelectView.ShowButtons();
         BeginGamePanelView.ShowHudEvent += HudView.ShowHud;
+        BeginGamePanelView.StartGameEvent += StartGame;
         Controller.HealthChangeEvent += HudView.SetHealth;
         Controller.AddMoneyEvent += HudView.SetMoney;
         Controller.TowersToBuyRecalculateEvent += _towerSelectView.Recalculate;
         Controller.EndGameEvent += StopGame;
+    }
+   
+    private void StartGame()
+    { 
         Controller.NewGame();
         spawnController.Begin();
         StartCoroutine(AddMoneyRoutine);
@@ -43,10 +43,10 @@ public class GameView : MonoBehaviour
         Controller.AddMoneyEvent -= HudView.SetMoney;
         Controller.EndGameEvent -= StopGame;
         BeginGamePanelView.ShowHudEvent -= HudView.ShowHud;
+        BeginGamePanelView.StartGameEvent -= StartGame;
         Controller.EndGameEvent -= StopGame;
         Controller.TowersToBuyRecalculateEvent -= _towerSelectView.Recalculate;
         spawnController.Stop();
-
     }
     
     public IEnumerator AddMoneyRoutine

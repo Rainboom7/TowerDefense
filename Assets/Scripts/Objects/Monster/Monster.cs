@@ -3,17 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Monster : MonoBehaviour
+public class Monster : MonoBehaviour
 {
     [SerializeField]
     private GameController _gameController;
     [SerializeField]
+    [Range(0, 100)]
     protected int _health;
     [SerializeField]
+    [Range(0, 100)]
     protected int _cost;
     [SerializeField]
+    [Range(0, 25)]
     protected float _speed;
     [SerializeField]
+    [Range(0, 15)]
     protected int _damage;
     public  event Action<int> HealthChangeEvent;
 
@@ -25,8 +29,8 @@ public abstract class Monster : MonoBehaviour
         _health -= damage;
         if (_health <= 0)
         {
-            Destroy(gameObject);
             _gameController.OnMoneyChangeEvent(_cost);
+            Destroy(gameObject);
         }
     }
 
