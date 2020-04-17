@@ -39,6 +39,9 @@ public class Monster : MonoBehaviour
         Waypoints = wayPointsHolder.GetWaypoints();
         Debug.Log(Waypoints.Length);
     }
+
+    
+
     public void DoDamage() {
         HealthChangeEvent?.Invoke(_damage);
     }

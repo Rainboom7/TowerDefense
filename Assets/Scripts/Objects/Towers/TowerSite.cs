@@ -19,7 +19,7 @@ using UnityEngine.UI;
         {
             if (_selectedTower != null)
             {
-                Instantiate(_selectedTower, transform.position + new Vector3(0.0f, 0, -90.0f), Quaternion.identity);
+                Instantiate(_selectedTower, transform.position + new Vector3(0.0f, 0.5f, -90.0f), Quaternion.identity);
                 ChangeMoneyAction?.Invoke(-_selectedTower.GetCost());
                 DeselectTowerAction?.Invoke();
                 gameObject.SetActive(false);

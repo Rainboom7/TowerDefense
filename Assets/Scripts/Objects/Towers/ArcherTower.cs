@@ -4,8 +4,9 @@ using UnityEngine;
 
     public class ArcherTower : Tower
     {
-        protected bool _monsterLeft = false;
+        private bool _monsterLeft = false;
         private Monster _monsterInRange;
+        private BulletBehavoiur _bullet;
         private void OnTriggerEnter2D(Collider2D collision)
         {
             _monsterLeft = false;

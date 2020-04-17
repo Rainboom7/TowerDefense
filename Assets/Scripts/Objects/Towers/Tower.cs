@@ -14,8 +14,6 @@ using UnityEngine;
         [SerializeField]
         [Range(0, 30)]
         protected int _damage;
-        [SerializeField]
-        protected BulletBehavoiur _bullet;
         public int GetCost()
         {
             return _cost;

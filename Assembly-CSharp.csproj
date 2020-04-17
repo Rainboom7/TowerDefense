@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\Objects\Towers\PoisonTower.cs" />
     <Compile Include="Assets\Scripts\Objects\Towers\Tower.cs" />
     <Compile Include="Assets\Scripts\Objects\Towers\TowerSite.cs" />
+    <Compile Include="Assets\Scripts\Objects\Towers\WizardTower.cs" />
     <Compile Include="Assets\Scripts\View\BeginGamePanelView.cs" />
     <Compile Include="Assets\Scripts\View\GameOverPanelView.cs" />
     <Compile Include="Assets\Scripts\View\GameView.cs" />

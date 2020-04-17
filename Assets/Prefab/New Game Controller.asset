@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: New Game Controller
   m_EditorClassIdentifier: 
   BeginHealth: 358
-  BeginMoney: 105
+  BeginMoney: 148
