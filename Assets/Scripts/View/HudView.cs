@@ -18,7 +18,6 @@ public class HudView : MonoBehaviour
     }
     public void ShowHud()
     {
-        Debug.Log("hud");
         gameObject.SetActive(true);
     }
     public void HideHud() {

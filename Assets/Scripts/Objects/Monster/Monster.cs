@@ -37,7 +37,6 @@ public class Monster : MonoBehaviour
     public void SetWayPoints(WayPointsHolder wayPointsHolder)
     {
         Waypoints = wayPointsHolder.GetWaypoints();
-        Debug.Log(Waypoints.Length);
     }
 
     

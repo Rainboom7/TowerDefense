@@ -18,7 +18,6 @@ public class GameController : ScriptableObject
     public void OnMoneyChangeEvent(int value)
     {
         Money += value;
-        Debug.Log(Money);
         AddMoneyEvent?.Invoke(Money);
         TowersToBuyRecalculateEvent?.Invoke(Money);
     }
