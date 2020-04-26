@@ -941,7 +941,7 @@ MonoBehaviour:
   BeginGamePanelView: {fileID: 1869633366}
   GameOverPanelView: {fileID: 1818327145}
   moneyPerSecond: 5
-  spawnController: {fileID: 1539006269}
+  SpawnController: {fileID: 1539006269}
   HudView: {fileID: 1548643245}
 --- !u!1 &1548643243 stripped
 GameObject:

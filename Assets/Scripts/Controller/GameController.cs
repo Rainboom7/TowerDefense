@@ -13,29 +13,29 @@ public class GameController : ScriptableObject
     public int BeginHealth;
     [Range(0, 1000)]
     public int BeginMoney;
-    private int BaseHealth;
-    private int Money;
+    private int _baseHealth;
+    private int _money;
     public void OnMoneyChangeEvent(int value)
     {
-        Money += value;
-        AddMoneyEvent?.Invoke(Money);
-        TowersToBuyRecalculateEvent?.Invoke(Money);
+        _money += value;
+        AddMoneyEvent?.Invoke(_money);
+        TowersToBuyRecalculateEvent?.Invoke(_money);
     }
     public void NewGame()
     {
-        BaseHealth = BeginHealth;
-        Money = BeginMoney;
+        _baseHealth = BeginHealth;
+        _money = BeginMoney;
         OnMoneyChangeEvent(0);
         OnHealthChangeEvent(0);
     }
     public void OnHealthChangeEvent(int damage)
     {
-        BaseHealth -= damage;
-        if (BaseHealth <= 0)
+        _baseHealth -= damage;
+        if (_baseHealth <= 0)
         {
             EndGameEvent?.Invoke();
         }
-        HealthChangeEvent?.Invoke(BaseHealth);
+        HealthChangeEvent?.Invoke(_baseHealth);
     }
     
 

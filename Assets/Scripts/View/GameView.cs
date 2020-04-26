@@ -12,7 +12,7 @@ public class GameView : MonoBehaviour
     public BeginGamePanelView BeginGamePanelView;
     public GameOverPanelView GameOverPanelView;
     public int moneyPerSecond;
-    public SpawnController spawnController;
+    public SpawnController SpawnController;
     public HudView HudView;
     private const int SECOND = 1;
     private void OnEnable()
@@ -31,7 +31,7 @@ public class GameView : MonoBehaviour
     private void StartGame()
     { 
         Controller.NewGame();
-        spawnController.Begin();
+        SpawnController.Begin();
         StartCoroutine(AddMoneyRoutine);
     }
     private void StopGame() {
@@ -46,7 +46,7 @@ public class GameView : MonoBehaviour
         BeginGamePanelView.StartGameEvent -= StartGame;
         Controller.EndGameEvent -= StopGame;
         Controller.TowersToBuyRecalculateEvent -= _towerSelectView.Recalculate;
-        spawnController.Stop();
+        SpawnController.Stop();
     }
     
     public IEnumerator AddMoneyRoutine

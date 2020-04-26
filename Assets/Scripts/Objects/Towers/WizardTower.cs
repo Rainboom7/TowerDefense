@@ -5,7 +5,6 @@ using UnityEngine;
 public class WizardTower : Tower
 {
     private float _passedtime;
-    public GameObject light;
     [SerializeField]
     private Animator _animator;
 
