@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
+using System.Collections.Concurrent;
 using UnityEngine;
 
     public class PoisonTower : Tower
     {
 
         private float _passedtime;
-        private List<Monster> _monstersInRange = new List<Monster>();
+        private ConcurrentBag<Monster> _monstersInRange = new ConcurrentBag< Monster>();
+   
         private void Start()
         {
             _passedtime = _shotDelay;
@@ -31,15 +36,13 @@ using UnityEngine;
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            _monstersInRange.Remove(collision.gameObject.GetComponent<Monster>());
+             Monster monster= collision.gameObject.GetComponent<Monster>();
+        while (_monstersInRange.TryTake(out monster)) { }
         }
-        private void Shoot()
+        private  void Shoot()
         {
+             Parallel.ForEach(_monstersInRange, (monster) => { monster.ChangeHealth(_damage); });
 
-            foreach (Monster monster in _monstersInRange)
-            {
-                monster.ChangeHealth(_damage);
-            }
         }
 
         public override string GetName()
