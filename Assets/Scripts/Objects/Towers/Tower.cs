@@ -6,18 +6,14 @@ using UnityEngine;
     public abstract class Tower : MonoBehaviour
     {
         [SerializeField]
-        [Range(0, 1000)]
-        protected int _cost;
+        public int Cost { get; }
         [SerializeField]
         [Range(0, 10)]
         protected float _shotDelay;
         [SerializeField]
         [Range(0, 30)]
         protected int _damage;
-        public int GetCost()
-        {
-            return _cost;
-        }
+       
         public abstract String GetName();
 
 
