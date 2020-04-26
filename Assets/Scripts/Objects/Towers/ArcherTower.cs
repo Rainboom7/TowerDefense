@@ -8,10 +8,17 @@ using UnityEngine;
         private Monster _monsterInRange;
         [SerializeField]
         private BulletBehavoiur _bullet;
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnEnable()
+    {
+        if (_bullet != null)
+        {
+            _bullet.Damage = _damage;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
         {
             _monsterLeft = false;
-            if (collision.gameObject.tag.Equals("Enemy") && _monsterInRange == null)
+            if (collision.gameObject.GetComponent<Monster>()!=null && _monsterInRange == null)
             {
                 _monsterInRange = collision.gameObject.GetComponent<Monster>();
                 StartCoroutine(ShootRoutine);
@@ -25,9 +32,8 @@ using UnityEngine;
             {
                 while (true)
                 {
-                    if (_monsterLeft)
+                     if (_monsterLeft || _bullet == null)
                         yield break;
-                    _bullet.Damage = _damage;
                     _bullet.Target = _monsterInRange;
                     Instantiate(_bullet, transform.position, Quaternion.identity);
                     yield return new WaitForSeconds(_shotDelay);
@@ -36,7 +42,7 @@ using UnityEngine;
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.gameObject.tag.Equals("Enemy"))
+            if (collision.gameObject.GetComponent<Monster>() != null)
             {
                 _monsterLeft = true;
                 _monsterInRange = null;

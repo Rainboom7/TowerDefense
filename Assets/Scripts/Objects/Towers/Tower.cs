@@ -3,10 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-    public abstract class Tower : MonoBehaviour
-    {
+public abstract class Tower : MonoBehaviour
+{
+        [Range(0, 1000)]
         [SerializeField]
-        public int Cost { get; }
+        private int _cost;
+        public int Cost
+    {
+        get { return _cost; }
+    }
         [SerializeField]
         [Range(0, 10)]
         protected float _shotDelay;

@@ -28,7 +28,7 @@ using UnityEngine;
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.tag.Equals("Enemy"))
+            if (collision.gameObject.GetComponent<Monster>() != null)
             {
                 _monstersInRange.Add(collision.gameObject.GetComponent<Monster>());
             }

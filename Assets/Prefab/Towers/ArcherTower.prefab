@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78a8aa6fceab784b9d83623ce0b4b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cost: 123
+  _cost: 59
   _shotDelay: 0.25
   _damage: 2
   _bullet: {fileID: 2507315983357361399, guid: 1142a163cdac0d84bb057bcd218ae99f, type: 3}

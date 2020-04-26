@@ -34,7 +34,7 @@ public class WizardTower : Tower
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left);
         if (hit.collider != null)
         {
-            if (hit.collider.gameObject.tag.Equals("Enemy"))
+            if (hit.collider.gameObject.GetComponent<Monster>() != null)
             {
                 Monster monsterInRange = hit.collider.gameObject.GetComponent<Monster>();
                 monsterInRange.ChangeHealth(_damage);
