@@ -20,7 +20,7 @@ public class TowerButtonView : MonoBehaviour
     {
         Button = gameObject.GetComponent<Button>();
         TowerName.text = Tower.GetName();
-        TowerCost.text = Tower.GetCost().ToString();
+        TowerCost.text = Tower.Cost.ToString();
         Button.interactable = false;
     }
     public void SelectTower()
