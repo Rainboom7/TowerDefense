@@ -31,17 +31,20 @@ public class Spawner : MonoBehaviour
             {
                 SpawnTime *= 0.98f;
                 int index = UnityEngine.Random.Range(0, _monsters.Length);
-               Monster newMonster= Instantiate(_monsters[index], transform.position, transform.rotation);
-                newMonster.SetWayPoints(_wayPoint);
-                newMonster.HealthChangeEvent += HealthChangeEvent;
-                yield return new WaitForSeconds(SpawnTime);
+                Monster newMonster = Instantiate(_monsters[index], transform.position, transform.rotation);
+                if (newMonster != null)
+                {
+                    newMonster.SetWayPoints(_wayPoint);
+                    newMonster.HealthChangeEvent += HealthChangeEvent;
+                    yield return new WaitForSeconds(SpawnTime);
+                }
             }
         }
     }
     private Monster GetRandomMonster() {
         int index = UnityEngine.Random.Range(0, _monsters.Length);
         Monster newMonster = _monsters[index];
-        newMonster.SetWayPoints(_wayPoint);
+        newMonster?.SetWayPoints(_wayPoint);
         return newMonster;
     }
 }

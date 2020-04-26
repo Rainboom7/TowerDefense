@@ -30,13 +30,13 @@ public class GameView : MonoBehaviour
    
     private void StartGame()
     { 
-        Controller.NewGame();
-        SpawnController.Begin();
+        Controller?.NewGame();
+        SpawnController?.Begin();
         StartCoroutine(AddMoneyRoutine);
     }
     private void StopGame() {
-        GameOverPanelView.GameOver();
-        HudView.HideHud();
+        GameOverPanelView?.GameOver();
+        HudView?.HideHud();
         StopCoroutine(AddMoneyRoutine);
         _towerSelectView.SelectTowerAction -= TowerController.SelectTower;
         Controller.HealthChangeEvent -= HudView.SetHealth;
@@ -46,7 +46,7 @@ public class GameView : MonoBehaviour
         BeginGamePanelView.StartGameEvent -= StartGame;
         Controller.EndGameEvent -= StopGame;
         Controller.TowersToBuyRecalculateEvent -= _towerSelectView.Recalculate;
-        SpawnController.Stop();
+        SpawnController?.Stop();
     }
     
     public IEnumerator AddMoneyRoutine

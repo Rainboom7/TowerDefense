@@ -29,14 +29,15 @@ public class Monster : MonoBehaviour
         _health -= damage;
         if (_health <= 0)
         {
-            _gameController.OnMoneyChangeEvent(_cost);
+            _gameController?.OnMoneyChangeEvent(_cost);
             Destroy(gameObject);
         }
     }
 
     public void SetWayPoints(WayPointsHolder wayPointsHolder)
     {
-        Waypoints = wayPointsHolder.GetWaypoints();
+        if(wayPointsHolder!=null)
+             Waypoints = wayPointsHolder.GetWaypoints();
     }
 
     
@@ -44,27 +45,29 @@ public class Monster : MonoBehaviour
     public void DoDamage() {
         HealthChangeEvent?.Invoke(_damage);
     }
-  
+
     private void Update()
     {
-       
-        Vector3 destination = Waypoints[currentWaypoint].transform.position;
-        Vector3 direction = (destination - transform.position).normalized;
-        if (Vector3.Distance(transform.position, destination) > 0.1)
+        if (Waypoints != null)
         {
-            gameObject.transform.position += direction * _speed * Time.deltaTime;
-
-        }
-        else
-        {
-            if (currentWaypoint < Waypoints.Length - 1)
+            Vector3 destination = Waypoints[currentWaypoint].transform.position;
+            Vector3 direction = (destination - transform.position).normalized;
+            if (Vector3.Distance(transform.position, destination) > 0.1)
             {
-                currentWaypoint++;
+                gameObject.transform.position += direction * _speed * Time.deltaTime;
+
             }
             else
             {
-                DoDamage();
-                Destroy(gameObject);
+                if (currentWaypoint < Waypoints.Length - 1)
+                {
+                    currentWaypoint++;
+                }
+                else
+                {
+                    DoDamage();
+                    Destroy(gameObject);
+                }
             }
         }
     }
