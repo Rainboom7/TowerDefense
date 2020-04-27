@@ -26,13 +26,16 @@ public class TowerSelectView : MonoBehaviour
     {
         foreach (TowerButtonView buttonView in Buttons)
         {
-            if (buttonView.Tower.Cost > Money)
+            if (buttonView.Tower != null)
             {
-                buttonView.Button.interactable = false;
-            }
-            if (buttonView.Tower.Cost <= Money && (buttonView.Button.interactable==false))
-            {
-                buttonView.Button.interactable = true;
+                if (buttonView.Tower.Cost > Money)
+                {
+                    buttonView.Button.interactable = false;
+                }
+                if (buttonView.Tower.Cost <= Money && (buttonView.Button.interactable == false))
+                {
+                    buttonView.Button.interactable = true;
+                }
             }
 
         }
